@@ -1,12 +1,12 @@
 const mysql = require("mysql");
-let connection = mysql.createConnection({
+let db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "db_learnnode",
 });
 
-connection.connect((error) => {
+db.connect((error) => {
   if (!!error) {
     console.log(error);
   } else {
@@ -14,4 +14,4 @@ connection.connect((error) => {
   }
 });
 
-module.exports = connection;
+module.exports = db;
