@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // route
 app.use("/users", require("./routes/users"));
-app.use("/posts", require("./routes/postRoutes"));
+app.use("/api", require("./routes/postRoutes"));
 
 app.listen(port, () => {
   console.log(`This app now runing using port ${port}`);
