@@ -34,11 +34,18 @@ export const getPost = async (req, res) => {
 
 // POST - Add new Post
 export const addPost = (req, res) => {
-  Post.addPost(req.body).then(async (result) => {
-    const post = await Post.getById(result.insertId);
-
-    res.status(200).json(successResponse("New post added successfully.", post));
-  });
+  Post.addPost(req.body)
+    .then((result) => {
+      return Post.getById(result.insertId);
+    })
+    .then((post) => {
+      res
+        .status(200)
+        .json(successResponse("New post added successfully.", post));
+    })
+    .catch((error) => {
+      res.status(500).json(errorResponse(error.message));
+    });
 };
 
 // PUT - Edit Post

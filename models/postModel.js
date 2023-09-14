@@ -21,14 +21,12 @@ export const getById = async (id) => {
 };
 
 // add new post
-export const addPost = async (data) => {
+export const addPost = (data) => {
   const { title, content } = data;
-  const result = await queryBuilder(
-    "INSERT INTO posts (title, content) VALUES (?,?)",
-    [title, content]
-  );
-
-  return result;
+  return queryBuilder("INSERT INTO post (title, content) VALUES (?,?)", [
+    title,
+    content,
+  ]);
 };
 
 // edit post
