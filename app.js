@@ -1,4 +1,8 @@
-const express = require("express");
+import express from "express";
+
+// route
+import postRoute from "./routes/postRoutes.js";
+
 const app = express();
 const port = 3000;
 
@@ -7,8 +11,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // route
-app.use("/users", require("./routes/users"));
-app.use("/api", require("./routes/postRoutes"));
+app.get("/", (req, res) => {
+  res.send(`API is running using port ${port}`);
+});
+app.use("/api", postRoute);
 
 app.listen(port, () => {
   console.log(`This app now runing using port ${port}`);

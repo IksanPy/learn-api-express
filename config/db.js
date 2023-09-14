@@ -1,17 +1,15 @@
-const mysql = require("mysql");
-let db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "db_learnnode",
-});
+import * as mysql from "mysql";
 
-db.connect((error) => {
-  if (!!error) {
-    console.log(error);
-  } else {
-    console.log(`Connection successfully.`);
-  }
-});
+export default mysql
+  .createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "db_learnnode",
+    port: 3308,
+  })
+  .connect((error) => {
+    error ? console.log(error) : console.log(`Connection successfully.`);
+  });
 
-module.exports = db;
+// export default db;

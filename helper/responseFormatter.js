@@ -1,4 +1,4 @@
-const successResponse = (message, data = null) => {
+export const successResponse = (message, data = null) => {
   return {
     status: true,
     message,
@@ -6,14 +6,9 @@ const successResponse = (message, data = null) => {
   };
 };
 
-const errorResponse = (message) => {
+export const errorResponse = (message) => {
   return {
     status: false,
     message,
   };
-};
-
-module.exports = {
-  successResponse,
-  errorResponse,
 };

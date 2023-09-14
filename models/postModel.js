@@ -1,5 +1,5 @@
-const db = require("../config/db");
-const { queryBuilder } = require("../helper/queryBuilder");
+import queryBuilder from "./../helper/queryBuilder.js";
+
 /**
  * Table name : posts
  * Columns :
@@ -9,19 +9,19 @@ const { queryBuilder } = require("../helper/queryBuilder");
  */
 
 // get all posts
-exports.getAll = async () => {
+export const getAll = async () => {
   const result = await queryBuilder("SELECT * FROM posts");
   return result;
 };
 
 // get data by id
-exports.getById = async (id) => {
+export const getById = async (id) => {
   const result = await queryBuilder("SELECT * FROM posts WHERE id =?", [id]);
   return result[0];
 };
 
 // add new post
-exports.addPost = async (data) => {
+export const addPost = async (data) => {
   const { title, content } = data;
   const result = await queryBuilder(
     "INSERT INTO posts (title, content) VALUES (?,?)",
@@ -32,7 +32,7 @@ exports.addPost = async (data) => {
 };
 
 // edit post
-exports.editPost = async (data) => {
+export const editPost = async (data) => {
   const { id, title, content } = data;
   const result = await queryBuilder(
     "UPDATE posts SET title=?, content =? WHERE id =?",
@@ -43,7 +43,7 @@ exports.editPost = async (data) => {
 };
 
 // delete data post
-exports.deletePost = async (id) => {
+export const deletePost = async (id) => {
   const result = await queryBuilder(`DELETE FROM posts WHERE id=?`, [id]);
   return result;
 };

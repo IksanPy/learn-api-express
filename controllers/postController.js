@@ -1,12 +1,13 @@
-const Post = require("../models/postModel");
+// const Post = require("../models/postModel");
+import * as Post from "./../models/postModel.js";
 
-const {
+import {
   successResponse,
   errorResponse,
-} = require("../helper/responseFormatter");
+} from "./../helper/responseFormatter.js";
 
 // GET - get All Posts
-exports.getPosts = (req, res) => {
+export const getPosts = (req, res) => {
   Post.getAll()
     .then((result) => {
       const response = successResponse("Posts fetching all.", result);
@@ -19,7 +20,7 @@ exports.getPosts = (req, res) => {
 };
 
 // GET - get Post By Id
-exports.getPost = async (req, res) => {
+export const getPost = async (req, res) => {
   Post.getById(req.params.id)
     .then((post) => {
       !post
@@ -32,7 +33,7 @@ exports.getPost = async (req, res) => {
 };
 
 // POST - Add new Post
-exports.addPost = (req, res) => {
+export const addPost = (req, res) => {
   Post.addPost(req.body).then(async (result) => {
     const post = await Post.getById(result.insertId);
 
@@ -41,7 +42,7 @@ exports.addPost = (req, res) => {
 };
 
 // PUT - Edit Post
-exports.editPost = (req, res) => {
+export const editPost = (req, res) => {
   const id = parseInt(req.params.id);
   const data = { id, ...req.body };
   const result = Post.editPost(data).then(async (result) => {
@@ -52,7 +53,7 @@ exports.editPost = (req, res) => {
 };
 
 // DELETE - delete Post
-exports.deletePost = async (req, res) => {
+export const deletePost = async (req, res) => {
   const id = parseInt(req.params.id);
   const post = await Post.getById(id);
 
